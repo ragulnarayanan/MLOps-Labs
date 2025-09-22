@@ -1,0 +1,4 @@
+api_lab/fast_api/venv/
+__pycache__/
+*.pyc
+.DS_Store
