@@ -1,5 +1,6 @@
 import joblib
 import numpy as np
+import os
 
 def predict_data(X):
     """
@@ -9,6 +10,9 @@ def predict_data(X):
     Returns:
         y_pred (int): Predicted class
     """
-    model = joblib.load("../model/wine_model.pkl")
+    model_path = os.path.join(os.path.dirname(__file__), "../model/wine_model.pkl")
+    model_path = os.path.abspath(model_path)
+
+    model = joblib.load(model_path)
     y_pred = model.predict(np.array(X))
     return y_pred
