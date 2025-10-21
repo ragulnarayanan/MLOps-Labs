@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r github_labs/requirements.txt
 
-      - name: Run pytest
+      - name: Run Pytest and generate report
         working-directory: github_labs
         run: pytest tests/test_shopping_cart_pytest.py --junitxml=pytest-report.xml
 
@@ -36,10 +36,10 @@ jobs:
           name: pytest-report
           path: github_labs/pytest-report.xml
 
-      - name: Notify on success
+      - name: ✅ Notify on success
         if: success()
         run: 'echo "✅ Pytest: Tests passed successfully."'
 
-      - name: Notify on failure
+      - name: ❌ Notify on failure
         if: failure()
         run: 'echo "❌ Pytest: Tests failed."'

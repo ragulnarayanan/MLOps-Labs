@@ -30,10 +30,10 @@ jobs:
         working-directory: github_labs
         run: python -m unittest discover -s tests -p "test_shopping_cart_unittest.py"
 
-      - name: Notify on success
+      - name: ✅ Notify on success
         if: success()
         run: 'echo "✅ Unittest: Tests passed successfully."'
 
-      - name: Notify on failure
+      - name: ❌ Notify on failure
         if: failure()
         run: 'echo "❌ Unittest: Tests failed."'
