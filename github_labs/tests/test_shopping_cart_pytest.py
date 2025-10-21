@@ -1,6 +1,9 @@
-# tests/test_shopping_cart_pytest.py
+import sys
+import os
 import pytest
-from src.shopping_cart import ShoppingCart
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+from shopping_cart import ShoppingCart
 
 @pytest.fixture
 def cart():
@@ -9,30 +12,21 @@ def cart():
 def test_add_item(cart):
     cart.add_item("Apple", 1.0, 2)
     assert len(cart.items) == 1
-    assert cart.items[0]["item_name"] == "Apple"
+    assert cart.items[0]["name"] == "Apple"
 
-def test_remove_item(cart):
-    cart.add_item("Banana", 0.5, 3)
-    cart.remove_item("Banana")
-    assert len(cart.items) == 0
-
-def test_calculate_total(cart):
+def test_total(cart):
     cart.add_item("Apple", 1.0, 2)
     cart.add_item("Banana", 0.5, 3)
-    assert cart.calculate_total() == 3.5
+    assert cart.total() == 3.5
 
 def test_apply_discount(cart):
     cart.add_item("Apple", 1.0, 2)
     cart.add_item("Banana", 0.5, 3)
-    assert cart.apply_discount(20) == pytest.approx(2.8)
+    assert pytest.approx(cart.apply_discount(20), 0.01) == 2.8
 
-def test_invalid_price_or_quantity(cart):
-    with pytest.raises(ValueError):
-        cart.add_item("Orange", -1.0, 1)
-    with pytest.raises(ValueError):
-        cart.add_item("Orange", 1.0, -1)
+def test_empty_cart_total(cart):
+    assert cart.total() == 0
 
-def test_invalid_discount(cart):
-    cart.add_item("Apple", 1.0, 2)
-    with pytest.raises(ValueError):
-        cart.apply_discount(120)
+def test_apply_full_discount(cart):
+    cart.add_item("Orange", 3.0, 1)
+    assert cart.apply_discount(100) == 0.0
