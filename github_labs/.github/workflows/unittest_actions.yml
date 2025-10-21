@@ -26,8 +26,8 @@ jobs:
 
       - name: Notify on success
         if: success()
-        run: echo "✅ Unittest: Tests passed successfully."
+        run: 'echo "✅ Unittest: Tests passed successfully."'
 
       - name: Notify on failure
         if: failure()
-        run: echo "❌ Unittest: Tests failed."
+        run: 'echo "❌ Unittest: Tests failed."'
