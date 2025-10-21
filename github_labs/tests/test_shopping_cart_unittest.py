@@ -1,6 +1,6 @@
 # tests/test_shopping_cart_unittest.py
 import unittest
-from shopping_cart import ShoppingCart
+from src.shopping_cart import ShoppingCart
 
 class TestShoppingCart(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 # tests/test_shopping_cart_pytest.py
 import pytest
-from shopping_cart import ShoppingCart
+from src.shopping_cart import ShoppingCart
 
 @pytest.fixture
 def cart():
