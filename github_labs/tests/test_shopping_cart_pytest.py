@@ -24,7 +24,7 @@ def test_calculate_total(cart):
 def test_apply_discount(cart):
     cart.add_item("Apple", 1.0, 2)
     cart.add_item("Banana", 0.5, 3)
-    assert cart.apply_discount(20) == 2.8
+    assert cart.apply_discount(20) == pytest.approx(2.8)
 
 def test_invalid_price_or_quantity(cart):
     with pytest.raises(ValueError):
