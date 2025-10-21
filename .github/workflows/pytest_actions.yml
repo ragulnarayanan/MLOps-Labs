@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
-      - 'tests/**'
-      - 'requirements.txt'
+      - 'github_labs/src/**'
+      - 'github_labs/tests/**'
+      - 'github_labs/requirements.txt'
       - '.github/workflows/pytest_action.yml'
 
 jobs:
@@ -24,14 +24,22 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r github_labs/requirements.txt
 
       - name: Run pytest
-        run: |
-          python -m pytest tests/test_shopping_cart_pytest.py --junitxml=pytest-report.xml
+        working-directory: github_labs
+        run: pytest tests/test_shopping_cart_pytest.py --junitxml=pytest-report.xml
 
       - name: Upload Pytest report
         uses: actions/upload-artifact@v2
         with:
           name: pytest-report
-          path: pytest-report.xml
+          path: github_labs/pytest-report.xml
+
+      - name: Notify on success
+        if: success()
+        run: 'echo "✅ Pytest: Tests passed successfully."'
+
+      - name: Notify on failure
+        if: failure()
+        run: 'echo "❌ Pytest: Tests failed."'
