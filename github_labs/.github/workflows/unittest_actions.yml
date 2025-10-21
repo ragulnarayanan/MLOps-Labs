@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'github_labs/shopping-cart/**'
+      - '.github/workflows/unittest_action.yml'
 
 jobs:
   build:
@@ -19,9 +22,11 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
+        working-directory: github_labs/shopping-cart
         run: pip install -r requirements.txt
 
       - name: Run unittests
+        working-directory: github_labs/shopping-cart
         run: python -m unittest discover -s tests -p "test_shopping_cart_unittest.py"
 
       - name: Notify on success

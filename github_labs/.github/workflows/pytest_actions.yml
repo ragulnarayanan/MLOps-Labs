@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'github_labs/shopping-cart/**'
+      - '.github/workflows/pytest_action.yml'
 
 jobs:
   build:
@@ -19,9 +22,11 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
+        working-directory: github_labs/shopping-cart
         run: pip install -r requirements.txt
 
       - name: Run Pytest and generate XML report
+        working-directory: github_labs/shopping-cart
         run: pytest tests/test_shopping_cart_pytest.py --junitxml=pytest-report.xml
         continue-on-error: false
 
@@ -29,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: pytest-report.xml
+          path: github_labs/shopping-cart/pytest-report.xml
 
       - name: Notify on success
         if: success()
