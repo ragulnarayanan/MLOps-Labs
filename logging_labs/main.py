@@ -22,3 +22,29 @@ try:
     x = 10 / 0
 except Exception:
     logging.exception("An error occurred!")
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("user_actions.log"),
+        logging.StreamHandler()
+    ]
+)
+
+
+# Logging User
+def login(username):
+    logging.info(f"User '{username}' logged in.")
+
+def perform_action(username, action):
+    logging.info(f"User '{username}' performed action: {action}")
+
+def logout(username):
+    logging.info(f"User '{username}' logged out.")
+
+# Example usage
+login("Ragul")
+perform_action("Ragul", "uploaded a file")
+logout("Ragul")
