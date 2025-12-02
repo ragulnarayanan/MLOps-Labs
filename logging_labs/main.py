@@ -14,6 +14,7 @@ logging.debug("This is a debug message — useful for development.")
 logging.info("This is an info message — for general updates.")
 logging.warning("This is a warning — something might be wrong.")
 logging.error("This is an error message — something went wrong.")
+
 logging.critical("This is critical — the program may not recover.")
 
 
