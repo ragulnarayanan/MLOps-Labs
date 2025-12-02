@@ -1,0 +1,6 @@
+2025-12-01 23:34:57 - DEBUG - This is a debug message — useful for development.
+2025-12-01 23:34:57 - INFO - This is an info message — for general updates.
+2025-12-01 23:34:57 - WARNING - This is a warning — something might be wrong.
+2025-12-01 23:34:57 - ERROR - This is an error message — something went wrong.
+2025-12-01 23:34:57 - CRITICAL - This is critical — the program may not recover.
+2025-12-01 23:34:57 - ERROR - An error occurred!
